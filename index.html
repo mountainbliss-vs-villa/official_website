@@ -58,17 +58,18 @@
         }
 
         #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-image: url('images/hero.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 
+    background-image: url('images/hero.webp');
+    background-size: contain;   /* key change */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000;
+        }
         #hero::before {
             content: '';
             position: absolute;
