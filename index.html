@@ -20,8 +20,10 @@
             line-height: 1.6;
             color: #4a4a4a;
             background-color: #f9f7f4;
+            overflow-x: hidden;
         }
 
+        /* --- Navigation --- */
         nav {
             position: fixed;
             top: 0;
@@ -47,37 +49,27 @@
             font-weight: 500;
         }
 
-        nav a:hover {
-            color: #6b8e23;
-        }
+        nav a:hover { color: #6b8e23; }
 
+        /* --- Global Sections --- */
         section {
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        /* --- Hero Section Fix --- */
         #hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-    background-image: url('images/hero.png');
-    background-size: contain;   /* key change */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #000;
-        }
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/hero.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #000;
         }
 
         .hero-content {
@@ -85,21 +77,23 @@
             z-index: 1;
             text-align: center;
             color: white;
+            padding: 0 1rem;
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             margin-bottom: 2rem;
             font-weight: 300;
         }
 
+        /* --- Buttons --- */
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -109,7 +103,6 @@
 
         .btn {
             padding: 1rem 2rem;
-            border: none;
             border-radius: 5px;
             font-size: 1rem;
             font-weight: 600;
@@ -117,306 +110,131 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            border: none;
         }
 
-        .btn-primary {
-            background-color: #6b8e23;
-            color: white;
-        }
+        .btn-primary { background-color: #6b8e23; color: white; }
+        .btn-secondary { background-color: #25d366; color: white; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        .btn-primary:hover {
-            background-color: #5a7d1a;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: #25d366;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: #1da851;
-            transform: translateY(-2px);
-        }
-
+        /* --- About Section --- */
         #about {
             text-align: center;
             background-color: white;
-            margin-top: -5rem;
+            margin-top: -4rem;
             position: relative;
             z-index: 2;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 3rem 2rem;
+            width: 90%;
         }
 
-        #about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #4a4a4a;
-            font-weight: 700;
-        }
-
-        #about p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #6b6b6b;
-        }
-
-        #gallery {
-            background-color: #f9f7f4;
-        }
-
-        #gallery h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #4a4a4a;
-        }
-
+        /* --- Gallery --- */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .gallery-item {
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
+            height: 250px;
         }
 
         .gallery-item img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
+        .gallery-item:hover img { transform: scale(1.1); }
 
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        #amenities {
-            background-color: white;
-        }
-
-        #amenities h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #4a4a4a;
-        }
-
+        /* --- Amenities --- */
         .amenities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
         }
 
         .amenity-item {
             text-align: center;
-            padding: 1rem;
-            border-radius: 10px;
+            padding: 1.5rem;
+            border-radius: 12px;
             background-color: #f9f7f4;
-            transition: transform 0.3s ease;
         }
 
-        .amenity-item:hover {
-            transform: translateY(-5px);
-        }
+        .amenity-icon { font-size: 2.5rem; margin-bottom: 0.5rem; display: block; }
 
-        .amenity-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #6b8e23;
-        }
-
-        .amenity-item h3 {
-            font-size: 1.2rem;
-            color: #4a4a4a;
-        }
-
-        #video {
-            background-color: #f9f7f4;
-            text-align: center;
-        }
-
-        #video h2 {
-            font-size: 2.5rem;
+        /* --- Responsive Embeds (Video & Map) --- */
+        .responsive-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
             margin-bottom: 2rem;
-            color: #4a4a4a;
         }
 
-        #video iframe {
+        .responsive-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 800px;
-            height: 450px;
-            border: none;
-            border-radius: 10px;
+            height: 100%;
+            border: 0;
         }
 
-        #location {
-            background-color: white;
-        }
-
-        #location h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #4a4a4a;
-        }
-
-        #location iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 10px;
-        }
-
-        #contact {
-            background-color: #f9f7f4;
-            text-align: center;
-        }
-
-        #contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #4a4a4a;
-        }
-
-        .contact-info {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-info p {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-info a {
-            color: #6b8e23;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
+        /* --- Mobile CTA Bar --- */
         #mobile-cta {
             display: none;
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: white;
-            padding: 1rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+            width: 100%;
+            background: white;
+            padding: 0.8rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1001;
         }
 
-        .mobile-cta-buttons {
-            display: flex;
-            justify-content: space-around;
+        .mobile-cta-buttons { display: flex; gap: 10px; }
+        .mobile-cta-buttons .btn { flex: 1; text-align: center; padding: 0.8rem; }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center; align-items: center;
         }
 
+        .lightbox img { max-width: 90%; max-height: 80%; border-radius: 5px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer; }
+
+        /* --- Mobile Specific Fixes --- */
         @media (max-width: 768px) {
-            #mobile-cta {
-                display: block;
-            }
-
-            nav {
-                padding: 0.5rem 0;
-            }
-
-            nav ul {
-                justify-content: space-around;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-
-            #about {
-                margin-top: -3rem;
-                padding: 2rem 1rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .amenities-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
+            section { padding: 3rem 1.2rem; }
+            #hero { height: 70vh; }
+            #about { margin-top: -2rem; padding: 2rem 1.2rem; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .gallery-item { height: 150px; }
+            #mobile-cta { display: block; }
+            body { padding-bottom: 70px; } /* Space for CTA bar */
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Animation */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.8s ease out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
+
     <nav>
         <ul>
             <li><a href="#hero">Home</a></li>
@@ -438,160 +256,56 @@
 
     <section id="about" class="fade-in">
         <h2>About Our Villa</h2>
-        <!-- Replace text below -->
-        <p>Welcome to Mountain Bliss VS Villa, a private hillfront retreat nestled along Maldevta Road, where luxury meets the calm of the mountains. Designed for those who seek a peaceful escape, the villa offers a perfect blend of modern comfort, scenic beauty, and complete privacy.<br><br>This elegant 2BHK villa features two spacious bedrooms with attached washrooms, a thoughtfully designed living area, and a fully equipped kitchen. Step outside into your private garden and soak in uninterrupted mountain views, creating the perfect setting to unwind and reconnect.<br><br>Whether you're travelling as a couple, with family, or a group of friends, Mountain Bliss VS Villa offers an experience that feels both intimate and indulgent. Enjoy cozy movie nights with projector screens, relaxed outdoor moments, or simply the serenity of nature around you.<br><br>With a dedicated caretaker available to assist with meals and your stay, every detail is taken care of—so you can focus on what truly matters: slowing down, breathing in the fresh mountain air, and creating unforgettable memories.</p>
+        <p>Welcome to Mountain Bliss VS Villa, a private hillfront retreat nestled along Maldevta Road, where luxury meets the calm of the mountains. Designed for those who seek a peaceful escape, the villa offers a perfect blend of modern comfort, scenic beauty, and complete privacy.<br><br>This elegant 2BHK villa features two spacious bedrooms with attached washrooms, a living area, and a fully equipped kitchen. Enjoy movie nights with projector screens and fresh mountain air in your private garden.</p>
     </section>
 
     <section id="gallery" class="fade-in">
-        <h2>Gallery</h2>
-       <div class="gallery-grid">
-
-    <!-- Exterior -->
-    <div class="gallery-item" onclick="openLightbox('images/facade.avif')">
-    <img src="images/facade.avif" alt="Front facade of Mountain Bliss VS Villa in Dehradun">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/facade2.avif')">
-    <img src="images/facade2.avif" alt="Exterior view of hillfront villa surrounded by greenery">
-</div>
-
-<!-- Garden -->
-<div class="gallery-item" onclick="openLightbox('images/garden.avif')">
-    <img src="images/garden.avif" alt="Private garden with lush greenery at Mountain Bliss VS Villa">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/garden2.webp')">
-    <img src="images/garden2.webp" alt="Open garden seating area with mountain views in Dehradun">
-</div>
-
-<!-- Living Room -->
-<div class="gallery-item" onclick="openLightbox('images/living_room.avif')">
-    <img src="images/living_room.avif" alt="Spacious living room with modern interiors at Mountain Bliss VS Villa">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/living_room2.avif')">
-    <img src="images/living_room2.avif" alt="Elegant living room with comfortable seating and decor">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/living_room3.avif')">
-    <img src="images/living_room3.avif" alt="Cozy living area with warm ambient lighting">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/living_room_entrance.avif')">
-    <img src="images/living_room_entrance.avif" alt="Entrance view leading into the living room space">
-</div>
-
-<!-- Bedrooms -->
-<div class="gallery-item" onclick="openLightbox('images/1st_bedroom.avif')">
-    <img src="images/1st_bedroom.avif" alt="First bedroom with comfortable bed at Mountain Bliss VS Villa, Dehradun">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/1st_bedroom2.avif')">
-    <img src="images/1st_bedroom2.avif" alt="Bedroom with stylish interiors and natural light">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/1st_bedroom3.avif')">
-    <img src="images/1st_bedroom3.avif" alt="Bedroom decor with ambient lighting and cozy setup">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/2nd_bedroom.avif')">
-    <img src="images/2nd_bedroom.avif" alt="Second bedroom with attached washroom in Dehradun villa">
-</div>
-
-<!-- Bathroom -->
-<div class="gallery-item" onclick="openLightbox('images/bathroom.avif')">
-    <img src="images/bathroom.avif" alt="Modern bathroom with clean fittings and amenities">
-</div>
-
-<!-- Kitchen -->
-<div class="gallery-item" onclick="openLightbox('images/kitchen.avif')">
-    <img src="images/kitchen.avif" alt="Fully equipped kitchen for a comfortable stay">
-</div>
-
-<!-- Dining -->
-<div class="gallery-item" onclick="openLightbox('images/outside_dining.avif')">
-    <img src="images/outside_dining.avif" alt="Outdoor dining setup with scenic mountain backdrop">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/outside_dining2.avif')">
-    <img src="images/outside_dining2.avif" alt="Garden dining area ideal for group meals">
-</div>
-
-<!-- Entertainment -->
-<div class="gallery-item" onclick="openLightbox('images/projector_display.avif')">
-    <img src="images/projector_display.avif" alt="Living room projector setup for movie experience">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/projector_display2.avif')">
-    <img src="images/projector_display2.avif" alt="Bedroom projector for private cinematic experience">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/ambient_mood_lighting.avif')">
-    <img src="images/ambient_mood_lighting.avif" alt="Ambient lighting creating a warm and relaxing atmosphere">
-</div>
-
-<!-- Amenities -->
-<div class="gallery-item" onclick="openLightbox('images/parking.webp')">
-    <img src="images/parking.webp" alt="Dedicated parking space available at the villa">
-</div>
-
-<div class="gallery-item" onclick="openLightbox('images/pet_friendly_stay.avif')">
-    <img src="images/pet_friendly_stay.avif" alt="Pet friendly stay at Mountain Bliss VS Villa in Dehradun">
-</div>
- 
-</div>
-    </section>
-
-    <section id="amenities" class="fade-in">
-        <h2>Amenities</h2>
-        <div class="amenities-grid">
-            <!-- Replace amenities -->
-            <div class="amenity-item">
-                <div class="amenity-icon">🏔️</div>
-                <h3>Mountain View</h3>
-            </div>
-            <div class="amenity-item">
-                <div class="amenity-icon">🌿</div>
-                <h3>Private Garden</h3>
-            </div>
-            <div class="amenity-item">
-                <div class="amenity-icon">🍽️</div>
-                <h3>Dining Area</h3>
-            </div>
-            <div class="amenity-item">
-                <div class="amenity-icon">🚗</div>
-                <h3>Parking</h3>
-            </div>
-            <div class="amenity-item">
-                <div class="amenity-icon">🎬</div>
-                <h3>Projector</h3>
-            </div>
-            <div class="amenity-item">
-                <div class="amenity-icon">🐶</div>
-                <h3>Pet-Friendly</h3>
-            </div>
+        <h2 style="text-align: center; margin-bottom: 2rem;">Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('images/facade.avif')"><img src="images/facade.avif" alt="Facade"></div>
+            <div class="gallery-item" onclick="openLightbox('images/garden.avif')"><img src="images/garden.avif" alt="Garden"></div>
+            <div class="gallery-item" onclick="openLightbox('images/living_room.avif')"><img src="images/living_room.avif" alt="Living Room"></div>
+            <div class="gallery-item" onclick="openLightbox('images/1st_bedroom.avif')"><img src="images/1st_bedroom.avif" alt="Bedroom"></div>
+            <div class="gallery-item" onclick="openLightbox('images/kitchen.avif')"><img src="images/kitchen.avif" alt="Kitchen"></div>
+            <div class="gallery-item" onclick="openLightbox('images/projector_display.avif')"><img src="images/projector_display.avif" alt="Projector"></div>
+            <div class="gallery-item" onclick="openLightbox('images/outside_dining.avif')"><img src="images/outside_dining.avif" alt="Dining"></div>
+            <div class="gallery-item" onclick="openLightbox('images/pet_friendly_stay.avif')"><img src="images/pet_friendly_stay.avif" alt="Pet Friendly"></div>
         </div>
     </section>
 
-   <div class="video-container">
-    <iframe 
-        src="https://www.youtube.com/embed/MEgW28S4muY" 
-        frameborder="0" 
-        allowfullscreen>
-    </iframe>
-</div>
-
-     <section class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.8891923588285!2d78.1095834477572!3d30.35409890991193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d9003264ba7f%3A0x596561a7a9680cf4!2sVs%20villa!5e0!3m2!1sen!2sus!4v1776208967494!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <section id="amenities" class="fade-in">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Amenities</h2>
+        <div class="amenities-grid">
+            <div class="amenity-item"><span class="amenity-icon">🏔️</span><h3>Mountain View</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🌿</span><h3>Private Garden</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🎬</span><h3>Projector</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🚗</span><h3>Parking</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🐶</span><h3>Pet-Friendly</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🍽️</span><h3>Dining</h3></div>
+        </div>
     </section>
 
-    <section id="contact" class="fade-in">
+    <section id="video" class="fade-in">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Video Tour</h2>
+        <div class="responsive-container">
+            <iframe src="https://www.youtube.com/embed/MEgW28S4muY" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="location" class="fade-in">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Location</h2>
+        <div class="responsive-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.2!2d78.1!3d30.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDE4JzAwLjAiTiA3OMKwMDYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000000" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in" style="text-align: center;">
         <h2>Contact Us</h2>
-        <div class="contact-info">
-            <!-- Replace details -->
-            <p>Phone: <a href="tel:9711909927">9711909927</a></p>
-            <p>Email: <a href="mailto:vanyashreevilla@gmail.com">vanyashreevilla@gmail.com</a></p>
-            <p><a href="https://wa.me/9711909927" class="btn btn-secondary">Chat on WhatsApp</a></p>
+        <div style="margin-top: 1.5rem;">
+            <p>Phone: <a href="tel:9711909927" style="color: #6b8e23; font-weight: 600;">9711909927</a></p>
+            <p>Email: <a href="mailto:vanyashreevilla@gmail.com" style="color: #6b8e23;">vanyashreevilla@gmail.com</a></p>
+            <br>
+            <a href="https://wa.me/9711909927" class="btn btn-secondary">Chat on WhatsApp</a>
         </div>
     </section>
 
@@ -603,8 +317,8 @@
     </div>
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img id="lightbox-img" src="" alt="Lightbox Image">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="">
     </div>
 
     <script>
@@ -612,27 +326,24 @@
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
-
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
         });
     </script>
 </body>
