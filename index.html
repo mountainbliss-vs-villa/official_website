@@ -231,6 +231,66 @@
         /* Animation */
         .fade-in { opacity: 0; transform: translateY(20px); transition: 0.8s ease out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* Container for all categories */
+.amenities-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* Individual Category Groups (Helps with visual flow) */
+.amenity-category {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+.amenity-item {
+    background: #ffffff;
+    border: 1px solid #eee;
+    padding: 1.2rem 0.8rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.amenity-item:hover {
+    background: #fdfcf9;
+    border-color: #6b8e23;
+    transform: translateY(-5px);
+}
+
+.amenity-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.amenity-item h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .amenity-category {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row on mobile */
+        gap: 8px;
+    }
+    .amenity-item {
+        padding: 0.8rem 0.4rem;
+    }
+    .amenity-icon {
+        font-size: 1.5rem;
+    }
+    .amenity-item h3 {
+        font-size: 0.75rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -273,17 +333,46 @@
         </div>
     </section>
 
-    <section id="amenities" class="fade-in">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Amenities</h2>
-        <div class="amenities-grid">
+<section id="amenities" class="fade-in">
+    <h2 style="text-align: center; margin-bottom: 2.5rem;">Luxury Amenities</h2>
+    
+    <div class="amenities-container">
+        <div class="amenity-category">
+            <div class="amenity-item"><span class="amenity-icon">📶</span><h3>Free WiFi</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">❄️</span><h3>AC Bedrooms</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🧥</span><h3>Wardrobes</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🎬</span><h3>Projector</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🎶</span><h3>Music System</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🎲</span><h3>Indoor Games</h3></div>
+        </div>
+
+        <div class="amenity-category">
+            <div class="amenity-item"><span class="amenity-icon">🍳</span><h3>Fully Furnished Kitchen</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🧊</span><h3>Refrigerator</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🚰</span><h3>Water Purifier</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🍽️</span><h3>Outdoor Dining</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🍢</span><h3>BBQ Setup</h3></div>
+        </div>
+
+        <div class="amenity-category">
             <div class="amenity-item"><span class="amenity-icon">🏔️</span><h3>Mountain View</h3></div>
             <div class="amenity-item"><span class="amenity-icon">🌿</span><h3>Private Garden</h3></div>
-            <div class="amenity-item"><span class="amenity-icon">🎬</span><h3>Projector</h3></div>
-            <div class="amenity-item"><span class="amenity-icon">🚗</span><h3>Parking</h3></div>
-            <div class="amenity-item"><span class="amenity-icon">🐶</span><h3>Pet-Friendly</h3></div>
-            <div class="amenity-item"><span class="amenity-icon">🍽️</span><h3>Dining</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🛖</span><h3>Gazebo</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🔥</span><h3>Bonfire</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🏊</span><h3>Kids Pool</h3></div>
         </div>
-    </section>
+
+        <div class="amenity-category">
+            <div class="amenity-item"><span class="amenity-icon">🚗</span><h3>Free Parking</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🧹</span><h3>Housekeeping</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🐶</span><h3>Pet Friendly</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🚿</span><h3>Geyser</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🧻</span><h3>Toiletries & Towels</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">🛏️</span><h3>Extra Mattresses</h3></div>
+            <div class="amenity-item"><span class="amenity-icon">📹</span><h3>CCTV (Exterior)</h3></div>
+        </div>
+    </div>
+</section>
 
     <section id="video" class="fade-in">
         <h2 style="text-align: center; margin-bottom: 2rem;">Video Tour</h2>
